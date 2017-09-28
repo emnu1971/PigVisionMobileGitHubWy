@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:templates="clr-namespace:PigVisionMobile.Core.Views.Templates;assembly=PigVisionMobile.Core"
+             xmlns:views="clr-namespace:PigVisionMobile.Core.Views.PigVision;assembly=PigVisionMobile.Core"
+             xmlns:viewModelBase="clr-namespace:PigVisionMobile.Core.ViewModels.Base;assembly=PigVisionMobile.Core"
+             xmlns:animations="clr-namespace:PigVisionMobile.Core.Animations;assembly=PigVisionMobile.Core"
+             xmlns:converters="clr-namespace:PigVisionMobile.Core.Converters;assembly=PigVisionMobile.Core"
+             xmlns:triggers="clr-namespace:PigVisionMobile.Core.Triggers;assembly=PigVisionMobile.Core"
+             xmlns:behaviors="clr-namespace:PigVisionMobile.Core.Behaviors;assembly=PigVisionMobile.Core"
+             xmlns:controls="clr-namespace:PigVisionMobile.Core.Controls;assembly=PigVisionMobile.Core"
+             xmlns:trans="clr-namespace:PigVisionMobile.Core.MarkupExtensions;assembly=PigVisionMobile.Core"
+             BarBackgroundColor="{StaticResource DarkGreenColor}"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             BarTextColor="{StaticResource WhiteColor}"
+             viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+             x:Class="PigVisionMobile.Core.Views.PigVision.MainView">
+    <TabbedPage.Title>
+        <OnPlatform      
+            x:TypeArguments="x:String"
+            iOS="{trans:Translate MainViewHeaderTitle}"
+            WinPhone="{trans:Translate MainViewHeaderTitle}"
+            Android="{trans:Translate MainViewHeaderTitle}"/>
+    </TabbedPage.Title>
+    <!-- TOOLBAR ON TOP -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding SettingsCommand}"
+            Text="Settings">
+            <ToolbarItem.Icon>
+                <OnPlatform 
+                    x:TypeArguments="FileImageSource"
+                    WinPhone="Assets/app_settings.png"
+                    Android="app_settings"
+                    iOS="app_settings"/>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <!-- PIGVISION COMPANY -->
+    <views:CompanyView  
+        x:Name="_companyView">
+        <views:CompanyView.Icon>
+            <OnPlatform        
+                x:TypeArguments="FileImageSource"
+                Android="menu_filter"
+                iOS="menu_filter"
+                WinPhone="Assets\menu_filter.png"/>
+        </views:CompanyView.Icon>
+    </views:CompanyView>
+    <!-- PIGVISION SOW PROFILE -->
+    <views:SowProfileView
+        x:Name="_sowProfileView">
+        <views:SowProfileView.Icon>
+            <OnPlatform        
+                x:TypeArguments="FileImageSource"
+                Android="menu_profile"
+                iOS="menu_profile"
+                WinPhone="Assets\menu_profile.png"/>
+        </views:SowProfileView.Icon>
+    </views:SowProfileView>
+    <!-- PIGVISION SOW ACTION -->
+    <views:SowActionView
+        x:Name="_sowActionView"
+        controls:CustomTabbedPage.BadgeText="{Binding BadgeCount}"
+        controls:CustomTabbedPage.BadgeColor="{StaticResource LightGreenColor}">
+        <views:SowActionView.Icon>
+            <OnPlatform        
+                x:TypeArguments="FileImageSource"
+                Android="menu_cart"
+                iOS="menu_cart"
+                WinPhone="Assets\menu_cart.png"/>
+        </views:SowActionView.Icon>
+    </views:SowActionView>
+</TabbedPage>

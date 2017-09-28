@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PigVisionMobile.Core.Views.PigVision.CompanyView"
+             xmlns:templates="clr-namespace:PigVisionMobile.Core.Views.Templates;assembly=PigVisionMobile.Core"
+             xmlns:views="clr-namespace:PigVisionMobile.Core.Views.PigVision;assembly=PigVisionMobile.Core"
+             xmlns:viewModelBase="clr-namespace:PigVisionMobile.Core.ViewModels.Base;assembly=PigVisionMobile.Core"
+             xmlns:animations="clr-namespace:PigVisionMobile.Core.Animations;assembly=PigVisionMobile.Core"
+             xmlns:converters="clr-namespace:PigVisionMobile.Core.Converters;assembly=PigVisionMobile.Core"
+             xmlns:triggers="clr-namespace:PigVisionMobile.Core.Triggers;assembly=PigVisionMobile.Core"
+             xmlns:behaviors="clr-namespace:PigVisionMobile.Core.Behaviors;assembly=PigVisionMobile.Core"
+             xmlns:controls="clr-namespace:PigVisionMobile.Core.Controls;assembly=PigVisionMobile.Core"
+             xmlns:trans="clr-namespace:PigVisionMobile.Core.MarkupExtensions;assembly=PigVisionMobile.Core"
+			 viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Title>
+        <OnPlatform
+            x:TypeArguments="x:String"
+            iOS="{trans:Translate CompanyViewHeaderTitle}"
+            WinPhone="{trans:Translate CompanyViewHeaderTitle}"
+            Android="{trans:Translate CompanyViewHeaderTitle}"/>
+    </ContentPage.Title>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="CadetBlue" Orientation="Vertical">
+            <!--- CURRENT LOGGED IN USERNAME -->
+            <Label 
+                Text="{Binding CurrentUserName, Mode=TwoWay}" 
+                FontSize="Large"
+                TextColor="White"/>
+            <Label
+                Text="{trans:Translate SelectCompany}"
+                FontSize="Medium"
+                TextColor="BlanchedAlmond"/>
+            <!-- COMPANY LIST -->
+            <ListView
+                ItemsSource="{Binding Companies}"
+                SelectedItem="{Binding SelectedCompany, Mode=TwoWay}"
+                ItemSelected="OnCompanySelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding Name}"/>
+                                </StackLayout>
+                                <Button Text=">"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

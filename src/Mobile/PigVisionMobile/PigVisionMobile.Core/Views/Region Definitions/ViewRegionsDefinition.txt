@@ -1,0 +1,27 @@
+﻿        #region Private Storage
+        #endregion Private Storage
+
+        #region Public Properties
+
+        #region Bindable Properties
+        #endregion Bindable Properties
+		        
+        #endregion Public Properties
+
+        #region C'tor
+
+        #endregion C'tor
+
+        #region Public Interface
+        
+		#endregion Public Interface
+
+		#region Protected Interface
+		#endregion Protected Interface
+
+        #region Private Interface
+
+        #region Command Logic
+        #endregion Command Logic
+
+        #endregion Private Interface

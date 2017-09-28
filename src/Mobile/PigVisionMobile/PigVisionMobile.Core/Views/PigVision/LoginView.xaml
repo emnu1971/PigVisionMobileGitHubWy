@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PigVisionMobile.Core.Views.PigVision.LoginView"
+             xmlns:templates="clr-namespace:PigVisionMobile.Core.Views.Templates;assembly=PigVisionMobile.Core"
+             xmlns:views="clr-namespace:PigVisionMobile.Core.Views.PigVision;assembly=PigVisionMobile.Core"
+             xmlns:viewModelBase="clr-namespace:PigVisionMobile.Core.ViewModels.Base;assembly=PigVisionMobile.Core"
+             xmlns:animations="clr-namespace:PigVisionMobile.Core.Animations;assembly=PigVisionMobile.Core"
+             xmlns:converters="clr-namespace:PigVisionMobile.Core.Converters;assembly=PigVisionMobile.Core"
+             xmlns:triggers="clr-namespace:PigVisionMobile.Core.Triggers;assembly=PigVisionMobile.Core"
+             xmlns:behaviors="clr-namespace:PigVisionMobile.Core.Behaviors;assembly=PigVisionMobile.Core"
+             xmlns:controls="clr-namespace:PigVisionMobile.Core.Controls;assembly=PigVisionMobile.Core"
+             xmlns:trans="clr-namespace:PigVisionMobile.Core.MarkupExtensions;assembly=PigVisionMobile.Core"
+             xmlns:img="clr-namespace:PigVisionMobile.Core.MarkupExtensions;assembly=PigVisionMobile.Core"
+            viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Title>
+        <OnPlatform
+            x:TypeArguments="x:String"
+            iOS="{trans:Translate LoginViewHeaderTitle}"
+            WinPhone="{trans:Translate LoginViewHeaderTitle}"
+            Android="{trans:Translate LoginViewHeaderTitle}"/>
+    </ContentPage.Title>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Spacing="20">
+            <!-- LOGO -->
+            <Image Source="{img:EmbeddedImage PigVisionMobile.Core.Images.GreenPigLogo.PNG}"
+               HorizontalOptions="Center"
+               WidthRequest="100"
+               HeightRequest="100"
+               />
+            <!-- LOGIN TITLE -->
+            <Label 
+			    Text="{trans:Translate LoginViewTitle}"
+			    TextColor="DarkOliveGreen"
+			    FontSize="24" 
+			    FontAttributes="Bold"  
+			    HorizontalOptions="Center" />
+            <!-- LOGIN SUBTITLE -->
+            <Label 
+			    Text="{trans:Translate LoginViewSubTitle}"
+			    TextColor="ForestGreen"
+			    FontSize="20" 
+			    HorizontalOptions="Center" />
+            <!-- USERNAME -->
+            <StackLayout Orientation="Horizontal" Padding="10,0,10,0">
+                <Label
+                    Text="{trans:Translate UserName}"
+                    TextColor="DarkSeaGreen"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                    />
+                <Entry
+                    Text="{Binding UserName.Value, Mode=TwoWay}"
+                    Placeholder="{trans:Translate EnterUserNamePlaceHolder}"
+                    TextColor="Black"
+                    WidthRequest="350"
+                    HorizontalOptions="EndAndExpand">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior
+							EventName="TextChanged"
+							Command="{Binding ValidateUserNameCommand}" />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger 
+							TargetType="Entry"
+							Binding="{Binding UserName.IsValid}"
+							Value="False">
+                            <Setter Property="behaviors:LineColorBehavior.LineColor" Value="{StaticResource ErrorColor}" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+            </StackLayout>
+            <!-- ERROR TO BE SHOWN WHEN NO USERNAME IS FILLED IN-->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label  
+					Text="{Binding UserName.Errors, Converter={StaticResource FirstValidationErrorConverter}"
+					Style="{StaticResource ValidationErrorLabelStyle}" />
+            </StackLayout>
+            <!-- PASSWORD -->
+            <StackLayout Orientation="Horizontal" Padding="10,0,10,0">
+                <Label
+                    Text="{trans:Translate PassWord}"
+                    TextColor="DarkSeaGreen"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                    />
+                <Entry
+                    Text="{Binding Password.Value, Mode=TwoWay}"
+                    IsPassword="True"
+                    Placeholder="{trans:Translate EnterPassWordPlaceHolder}"
+                    TextColor="Black"
+                    WidthRequest="350"
+                    HorizontalOptions="EndAndExpand">
+                    <Entry.Behaviors>
+                        <behaviors:EventToCommandBehavior
+							EventName="TextChanged"
+							Command="{Binding ValidatePasswordCommand}" />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger 
+							TargetType="Entry"
+							Binding="{Binding Password.IsValid}"
+							Value="False">
+                            <Setter Property="behaviors:LineColorBehavior.LineColor" Value="{StaticResource ErrorColor}" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+            </StackLayout>
+            <!-- ERROR TO BE SHOWN WHEN NO PASSWORD IS FILLED IN-->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label  
+					Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}"
+					Style="{StaticResource ValidationErrorLabelStyle}" />
+            </StackLayout>
+            <!-- LOGIN BUTTON -->
+            <StackLayout Padding="0,50,0,0">
+                <Button HorizontalOptions="Fill"
+                    Text="{trans:Translate LoginButton}"
+                    TextColor="White"
+                    BackgroundColor="PaleGreen"
+                    Command="{Binding MockSignInCommand}"
+                    />
+                <Label
+                    Text="{trans:Translate PassWordForgotten}"
+                    TextColor="Red"
+                    HorizontalOptions="Center"
+                    />
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

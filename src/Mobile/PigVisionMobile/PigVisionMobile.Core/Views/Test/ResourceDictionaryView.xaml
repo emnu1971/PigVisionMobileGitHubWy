@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PigVisionMobile.Core.Views.Test.ResourceDictionaryView">
+    <ContentPage.Resources>
+        <!-- RESOURCE DICTIONARY PRIVATE TO LOCAL VIEW-->
+        <!-- tip: define resources in App.xaml for global use !-->
+        <!-- If you define the same resource keys as in the App.Xaml here-->
+        <!-- then local dictionary value will be used instead-->
+        <ResourceDictionary>
+            <!-- Resources -->
+            <Color x:Key="buttonBackGroundColor">Red</Color>
+            <Color x:Key="buttonTextColor">Green</Color>
+            <x:Int32 x:Key="borderRadius">20</x:Int32>
+            <FontAttributes x:Key="buttonFontAttributes">Italic</FontAttributes>
+            <!-- Styles -->
+            <Style x:Key="button" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource buttonBackGroundColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource buttonTextColor}"/>
+                <Setter Property="BorderRadius" Value="{StaticResource borderRadius}"/>
+                <Setter Property="FontAttributes" Value="{StaticResource buttonFontAttributes}"/>
+            </Style>
+            <!-- Style Inheritance -->
+            <Style x:Key="primaryButton" TargetType="Button" BasedOn="{StaticResource button}">
+                <Setter Property="BackgroundColor" Value="Pink"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="20" VerticalOptions="Center">
+            <!-- SET RESOURCES AT THE CONTROL LEVEL-->
+            <!-- Resources defined within here will-->
+            <!-- be available to the parent (stacklayout)-->
+            <!-- and all it's children-->
+            <!-- best practice: do not do this ! -->
+            <StackLayout.Resources>
+                
+            </StackLayout.Resources>
+            <!-- LOGIN BUTTON-->
+            <!-- we will replace BackGroundColor,TextColor,BorderRadius,FontAttributes with a "Style" -->
+            <!-- because these properties are the same for both LOGIN and REGISTER buttons-->
+            <!--
+            <Button 
+                Text="Login" 
+			    BackgroundColor="{DynamicResource buttonBackGroundColor}" 
+			    TextColor="White" 
+			    BorderRadius="{StaticResource borderRadius}"
+			    FontAttributes="Bold" />
+            -->
+            <Button 
+                Text="Login" 
+			    Style="{StaticResource button}" />
+            <!-- REGISTER BUTTON -->
+            <!--
+            <Button 
+                Text="Register" 
+			    BackgroundColor="{DynamicResource buttonBackGroundColor}"
+			    TextColor="White" 
+			    BorderRadius="{StaticResource borderRadius}"
+			    FontAttributes="Bold" />
+            -->
+            <Button 
+                Text="Register" 
+			    Style="{StaticResource primaryButton}" />
+            <!-- DYNAMIC RESOURCES -->
+            <!-- In this example we want the backgroundcolor from the-->
+            <!-- LOGIN and REGISTER buttons to change-->
+            <Button Text="Change Style" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

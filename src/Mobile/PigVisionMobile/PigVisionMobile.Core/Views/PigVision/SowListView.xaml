@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PigVisionMobile.Core.Views.PigVision.SowListView"
+             xmlns:templates="clr-namespace:PigVisionMobile.Core.Views.Templates;assembly=PigVisionMobile.Core"
+             xmlns:views="clr-namespace:PigVisionMobile.Core.Views.PigVision;assembly=PigVisionMobile.Core"
+             xmlns:viewModelBase="clr-namespace:PigVisionMobile.Core.ViewModels.Base;assembly=PigVisionMobile.Core"
+             xmlns:animations="clr-namespace:PigVisionMobile.Core.Animations;assembly=PigVisionMobile.Core"
+             xmlns:converters="clr-namespace:PigVisionMobile.Core.Converters;assembly=PigVisionMobile.Core"
+             xmlns:triggers="clr-namespace:PigVisionMobile.Core.Triggers;assembly=PigVisionMobile.Core"
+             xmlns:behaviors="clr-namespace:PigVisionMobile.Core.Behaviors;assembly=PigVisionMobile.Core"
+             xmlns:controls="clr-namespace:PigVisionMobile.Core.Controls;assembly=PigVisionMobile.Core"
+             xmlns:trans="clr-namespace:PigVisionMobile.Core.MarkupExtensions;assembly=PigVisionMobile.Core"
+			 viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Title>
+        <OnPlatform
+            x:TypeArguments="x:String"
+            iOS="{trans:Translate SowListViewHeaderTitle}"
+            WinPhone="{trans:Translate SowListViewHeaderTitle}"
+            Android="{trans:Translate SowListViewHeaderTitle}"/>
+    </ContentPage.Title>
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- SOW LIST -->
+            <ListView ItemsSource="{Binding Sows}"
+                      SelectedItem="{Binding SelectedSow}"
+                      ItemSelected="OnSowSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell TextColor="RoyalBlue" DetailColor="SlateGray"
+                            Text="{Binding Name}"
+                            Detail="{Binding Box}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

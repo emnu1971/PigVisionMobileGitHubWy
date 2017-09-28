@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PigVisionMobile.Core.Views.PigVision.SowDetailsView"
+             xmlns:templates="clr-namespace:PigVisionMobile.Core.Views.Templates;assembly=PigVisionMobile.Core"
+             xmlns:views="clr-namespace:PigVisionMobile.Core.Views.PigVision;assembly=PigVisionMobile.Core"
+             xmlns:viewModelBase="clr-namespace:PigVisionMobile.Core.ViewModels.Base;assembly=PigVisionMobile.Core"
+             xmlns:animations="clr-namespace:PigVisionMobile.Core.Animations;assembly=PigVisionMobile.Core"
+             xmlns:converters="clr-namespace:PigVisionMobile.Core.Converters;assembly=PigVisionMobile.Core"
+             xmlns:triggers="clr-namespace:PigVisionMobile.Core.Triggers;assembly=PigVisionMobile.Core"
+             xmlns:behaviors="clr-namespace:PigVisionMobile.Core.Behaviors;assembly=PigVisionMobile.Core"
+             xmlns:controls="clr-namespace:PigVisionMobile.Core.Controls;assembly=PigVisionMobile.Core"
+             xmlns:trans="clr-namespace:PigVisionMobile.Core.MarkupExtensions;assembly=PigVisionMobile.Core"
+			 viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Title>
+        <OnPlatform
+            x:TypeArguments="x:String"
+            iOS="{trans:Translate SowDetailsViewHeaderTitle}"
+            WinPhone="{trans:Translate SowDetailsViewHeaderTitle}"
+            Android="{trans:Translate SowDetailsViewHeaderTitle}"/>
+    </ContentPage.Title>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Start" Spacing="20" Padding="10,50,10,0">
+            <!-- SOW NAME -->
+            <StackLayout Orientation="Horizontal" Padding="10,0,10,0">
+                <Label
+                    Text="{trans:Translate SowName}"
+                    TextColor="DarkSeaGreen"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                    />
+                <Entry 
+                    Text="{Binding Name.Value, Mode=TwoWay}"
+                    TextColor="Black"
+                    WidthRequest="300"
+                    HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+            <!-- SOW BOX -->
+            <StackLayout Orientation="Horizontal" Padding="10,0,10,0">
+                <Label
+                    Text="{trans:Translate LocationName}"
+                    TextColor="DarkSeaGreen"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                    />
+                <Entry 
+                    Text="{Binding Box.Value, Mode=TwoWay}"
+                    TextColor="Black"
+                    WidthRequest="300"
+                    HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
